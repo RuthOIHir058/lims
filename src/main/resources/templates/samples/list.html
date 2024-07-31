@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Samples</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <h1>Samples</h1>
+    <p><a th:href="@{/samples/add}">Add New Sample</a></p>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Type</th>
+                <th>Description</th>
+                <th>Source</th>
+                <th>Collection Date</th>
+                <th>Initial Condition</th>
+                <th>Current Status</th>
+                <th>Storage Location</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="sample : ${samples}">
+                <td th:text="${sample.sampleId}"></td>
+                <td th:text="${sample.sampleType}"></td>
+                <td th:text="${sample.description}"></td>
+                <td th:text="${sample.source}"></td>
+                <td th:text="${sample.collectionDate}"></td>
+                <td th:text="${sample.initialCondition}"></td>
+                <td th:text="${sample.currentStatus}"></td>
+                <td th:text="${sample.storageLocation.locationName}"></td>
+                <td>
+                    <a th:href="@{/samples/edit/{id}(id=${sample.sampleId})}">Edit</a>
+                    <a th:href="@{/samples/delete/{id}(id=${sample.sampleId})}">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

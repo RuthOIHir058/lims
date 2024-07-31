@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Movement Log</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <h1>Edit Movement Log</h1>
+    <form th:action="@{/movementlogs/{id}(id=${movementLog.movementLogId})}" th:object="${movementLog}" method="post">
+        <div>
+            <label for="sampleId">Sample:</label>
+            <select id="sampleId" th:field="*{sample.sampleId}">
+                <option th:each="sample : ${samples}" th:value="${sample.sampleId}" th:text="${sample.description}"></option>
+            </select>
+        </div>
+        <div>
+            <label for="fromLocationId">From Location:</label>
+            <select id="fromLocationId" th:field="*{fromLocation.storageLocationId}">
+                <option th:each="location : ${locations}" th:value="${location.storageLocationId}" th:text="${location.locationName}"></option>
+            </select>
+        </div>
+        <div>
+            <label for="toLocationId">To Location:</label>
+            <select id="toLocationId" th:field="*{toLocation.storageLocationId}">
+                <option th:each="location : ${locations}" th:value="${location.storageLocationId}" th:text="${location.locationName}"></option>
+            </select>
+        </div>
+        <div>
+            <label for="movementDate">Movement Date:</label>
+            <input type="date" id="movementDate" th:field="*{movementDate}">
+        </div>
+        <div>
+            <label for="handledBy">Handled By:</label>
+            <input type="text" id="handledBy" th:field="*{handledBy}">
+        </div>
+        <div>
+            <label for="reason">Reason:</label>
+            <input type="text" id="reason" th:field="*{reason}">
+        </div>
+        <div>
+            <button type="submit">Update</button>
+        </div>
+    </form>
+</body>
+</html>

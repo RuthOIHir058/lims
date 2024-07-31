@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Storage Location</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <h1>Edit Storage Location</h1>
+    <form th:action="@{/storagelocations/{id}(id=${location.storageLocationId})}" th:object="${location}" method="post">
+        <div>
+            <label for="locationName">Location Name:</label>
+            <input type="text" id="locationName" th:field="*{locationName}">
+        </div>
+        <div>
+            <label for="locationType">Location Type:</label>
+            <input type="text" id="locationType" th:field="*{locationType}">
+        </div>
+        <div>
+            <label for="capacity">Capacity:</label>
+            <input type="text" id="capacity" th:field="*{capacity}">
+        </div>
+        <div>
+            <button type="submit">Update</button>
+        </div>
+    </form>
+</body>
+</html>

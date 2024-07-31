@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Movement Logs</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <h1>Movement Logs</h1>
+    <p><a th:href="@{/movementlogs/add}">Add New Movement Log</a></p>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Sample</th>
+                <th>From Location</th>
+                <th>To Location</th>
+                <th>Movement Date</th>
+                <th>Handled By</th>
+                <th>Reason</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="movementLog : ${movementLogs}">
+                <td th:text="${movementLog.movementLogId}"></td>
+                <td th:text="${movementLog.sample.description}"></td>
+                <td th:text="${movementLog.fromLocation.locationName}"></td>
+                <td th:text="${movementLog.toLocation.locationName}"></td>
+                <td th:text="${movementLog.movementDate}"></td>
+                <td th:text="${movementLog.handledBy}"></td>
+                <td th:text="${movementLog.reason}"></td>
+                <td>
+                    <a th:href="@{/movementlogs/edit/{id}(id=${movementLog.movementLogId})}">Edit</a>
+                    <a th:href="@{/movementlogs/delete/{id}(id=${movementLog.movementLogId})}">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

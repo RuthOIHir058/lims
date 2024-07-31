@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Sample</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <h1>Edit Sample</h1>
+    <form th:action="@{/samples/{id}(id=${sample.sampleId})}" th:object="${sample}" method="post">
+        <div>
+            <label for="sampleType">Sample Type:</label>
+            <input type="text" id="sampleType" th:field="*{sampleType}">
+        </div>
+        <div>
+            <label for="description">Description:</label>
+            <input type="text" id="description" th:field="*{description}">
+        </div>
+        <div>
+            <label for="source">Source:</label>
+            <input type="text" id="source" th:field="*{source}">
+        </div>
+        <div>
+            <label for="collectionDate">Collection Date:</label>
+            <input type="date" id="collectionDate" th:field="*{collectionDate}">
+        </div>
+        <div>
+            <label for="initialCondition">Initial Condition:</label>
+            <input type="text" id="initialCondition" th:field="*{initialCondition}">
+        </div>
+        <div>
+            <label for="currentStatus">Current Status:</label>
+            <input type="text" id="currentStatus" th:field="*{currentStatus}">
+        </div>
+        <div>
+            <label for="storageLocationId">Storage Location:</label>
+            <select id="storageLocationId" th:field="*{storageLocation.storageLocationId}">
+                <option th:each="location : ${locations}" th:value="${location.storageLocationId}" th:text="${location.locationName}"></option>
+            </select>
+        </div>
+        <div>
+            <button type="submit">Update</button>
+        </div>
+    </form>
+</body>
+</html>
